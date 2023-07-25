@@ -16,9 +16,7 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: '0.13'  # Use the desired version (e.g., 0.13, 0.14, 1.0, etc.)
-
+      
     - name: Terraform Validate
       run: terraform validate
 
