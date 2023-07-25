@@ -1,0 +1,48 @@
+name: Terraform CI
+description: Composite action to perform Terraform actions on TF files
+
+
+inputs:
+  pom-file-path:
+    description: 'Path to the TF file'
+    required: true
+    default: './main.tf'
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: '0.13'  # Use the desired version (e.g., 0.13, 0.14, 1.0, etc.)
+
+    - name: Terraform Format
+      id: fmt
+      shell: bash
+      run: terraform fmt -check
+
+    - name: Terraform Init
+      id: init
+      shell: bash
+      run: terraform init
+    
+    - name: Terraform Validate
+      id: validate
+      shell: bash
+      run: terraform validate
+
+    # If the CI fails, block merging the PR
+    - name: Block PR Merge on Failure
+      shell: bash
+      if: ${{ failure() }}
+      run: echo "CI checks failed. Please fix the issues before merging." && exit 1
+
+    # If the CI passes, enable merging the PR
+    - name: Allow PR Merge on Success
+      shell: bash
+      if: ${{ success() }}
+      run: echo "CI checks passed. You can merge the PR now."
