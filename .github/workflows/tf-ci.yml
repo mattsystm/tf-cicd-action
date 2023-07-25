@@ -21,4 +21,4 @@ jobs:
     - name: Run Composite Action
       uses: ./.github/actions/composite-action
       with:
-        pom-file-path: './main.tf'
+        tf-file-path: './main.tf'

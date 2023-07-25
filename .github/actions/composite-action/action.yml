@@ -3,7 +3,7 @@ description: Composite action to perform Terraform actions on TF files
 
 
 inputs:
-  pom-file-path:
+  tf-file-path:
     description: 'Path to the TF file'
     required: true
     default: './main.tf'
