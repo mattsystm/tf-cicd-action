@@ -30,3 +30,13 @@ jobs:
     - name: Terraform Validate
       id: validate
       run: terraform validate
+
+    # If the CI fails, block merging the PR
+    - name: Block PR Merge on Failure
+      if: ${{ failure() }}
+      run: echo "CI checks failed. Please fix the issues before merging." && exit 1
+
+    # If the CI passes, enable merging the PR
+    - name: Allow PR Merge on Success
+      if: ${{ success() }}
+      run: echo "CI checks passed. You can merge the PR now."
