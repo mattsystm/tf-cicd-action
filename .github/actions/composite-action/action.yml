@@ -35,6 +35,27 @@ runs:
       shell: bash
       run: terraform validate
 
+
+    - name: Install Checkov
+      shell: bash
+      run: |
+        pip install checkov
+
+    - name: Run Checkov
+      shell: bash
+      run: checkov -d .
+
+    # - name: Setup SonarQube
+    #   shell: bash
+    #   uses: sonarsource/sonarcloud-github-action@master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    # - name: Run SonarQube
+    #   shell: bash
+    #   run: sonar-scanner
+
     # If the CI fails, block merging the PR
     - name: Block PR Merge on Failure
       shell: bash
