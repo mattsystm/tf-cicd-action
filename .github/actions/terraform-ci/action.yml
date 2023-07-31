@@ -53,7 +53,7 @@ runs:
         framework: terraform
         output_format: cli,sarif
         output_file_path: console,results.sarif
-        github_pat: ${{ secrets.GH_PAT }}
+        # github_pat: ${{ secrets.GH_PAT }}
         
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v2
