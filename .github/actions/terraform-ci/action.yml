@@ -11,7 +11,6 @@ inputs:
 runs:
   using: 'composite'
 
-
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -19,7 +18,7 @@ runs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: '0.13'  # Use the desired version (e.g., 0.13, 0.14, 1.0, etc.)
+        terraform_version: '0.13'  
 
     - name: Terraform Format
       id: fmt
@@ -37,15 +36,6 @@ runs:
       run: terraform validate
 
 
-    # - name: Install Checkov
-    #   shell: bash
-    #   run: |
-    #     pip install checkov
-
-    # - name: Run Checkov
-    #   shell: bash
-    #   run: checkov -d ./terraform
-
     - name: Run Checkov action
       uses: bridgecrewio/checkov-action@master
       with:
@@ -53,30 +43,19 @@ runs:
         framework: terraform
         output_format: cli,sarif
         output_file_path: console,results.sarif
-        # github_pat: ${{ secrets.GH_PAT }}
-      
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-        
-      # Results are generated only on a success or failure
-      # this is required since GitHub by default won't run the next step
-      # when the previous one has failed. Security checks that do not pass will 'fail'.
-      # An alternative is to add `continue-on-error: true` to the previous step
-      # Or 'soft_fail: true' to checkov.
-      if: success() || failure()
-      with:
-        sarif_file: results.sarif
+    
 
-    # - name: Setup SonarQube
+    # - name: Run SonarQube Analysis
     #   shell: bash
-    #   uses: sonarsource/sonarcloud-github-action@master
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   run: |
+    #     sonar-scanner \
+    #       -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+    #       -Dsonar.host.url=${SONAR_HOST_URL} \
+    #       -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+    #       -Dsonar.sarifReportPaths=${SONAR_SARIF_REPORT_PATHS} \
+    #       -Donar.qualitygate.wait=true
+    #   working-directory: ${{ github.workspace }}
 
-    # - name: Run SonarQube
-    #   shell: bash
-    #   run: sonar-scanner
 
     # If the CI fails, block merging the PR
     - name: Block PR Merge on Failure
