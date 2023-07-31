@@ -54,7 +54,7 @@ runs:
     #       -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
     #       -Dsonar.sarifReportPaths=${SONAR_SARIF_REPORT_PATHS} \
     #       -Donar.qualitygate.wait=true
-    #   working-directory: ${{ github.workspace }}
+  
 
 
     # If the CI fails, block merging the PR
