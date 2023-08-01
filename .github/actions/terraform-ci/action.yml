@@ -49,7 +49,7 @@ runs:
         output_format: cli,sarif
         output_file_path: console,results.sarif
         soft_fail: true
-        skip_path: ${{ inputs.skip_path }}
+        # skip_path: ${{ inputs.skip_path }}
     
 
     # - name: Run SonarQube Analysis
