@@ -1,0 +1,6 @@
+projectKey=demo-terraform
+serverUrl=http://localhost:9000
+serverVersion=10.1.0.73491
+dashboardUrl=http://localhost:9000/dashboard?id=demo-terraform
+ceTaskId=AYmtnjJRg3pHonS75cg2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYmtnjJRg3pHonS75cg2
