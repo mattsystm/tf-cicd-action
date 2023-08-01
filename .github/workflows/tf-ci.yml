@@ -20,5 +20,5 @@ jobs:
 
     - name: Run Composite Action
       uses: ./.github/actions/terraform-ci
-      # with:
-      #   tf-file-path: './terraform/main.tf'
+      with:
+        tf-file-path: './terraform/main.tf'
