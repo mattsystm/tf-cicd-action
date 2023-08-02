@@ -13,8 +13,8 @@ on:
 jobs:
   terraform_ci:
     runs-on: ubuntu-latest
-    # env:
-    #   SKIP_PATH: '.github'
+    env:
+      SKIP_PATH: '.github/workflows'
 
     steps:
     - name: Checkout repository
