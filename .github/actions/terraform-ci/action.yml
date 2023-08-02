@@ -40,7 +40,7 @@ runs:
     - name: Run Checkov action
       uses: bridgecrewio/checkov-action@master
       with:
-        directory: ./terraform
+        # directory: ./terraform
         framework: terraform
         output_format: cli,sarif
         output_file_path: console,results.sarif
