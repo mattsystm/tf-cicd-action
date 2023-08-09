@@ -54,7 +54,7 @@ jobs:
 
     - name: Run a script
       run: |
-        echo 'Hello {{ secrets.TF_API_TOKEN }}
+        echo 'Hello {{ secrets.TF_API_TOKEN }}'
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
