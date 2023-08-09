@@ -18,7 +18,7 @@ jobs:
       
     - name: Run a script
       run: |
-        echo 'Hello ${{ vars.TF_API_TOKEN }}'
+        echo 'Hello ${{ vars.TF_CLOUD_HOSTNAME }}'
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -58,7 +58,7 @@ jobs:
 
     - name: Run a script
       run: |
-        echo 'Hello ${{ vars.TF_API_TOKEN }}'
+        echo 'Hello ${{ vars.TF_CLOUD_HOSTNAME }}'
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
