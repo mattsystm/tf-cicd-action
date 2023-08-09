@@ -15,6 +15,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      
+    - name: Run a script
+      run: |
+        echo 'Hello ${{ vars.TF_API_TOKEN }}'
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -54,7 +58,7 @@ jobs:
 
     - name: Run a script
       run: |
-        echo 'Hello ${{ secrets.TF_API_TOKEN }}'
+        echo 'Hello ${{ vars.TF_API_TOKEN }}'
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
